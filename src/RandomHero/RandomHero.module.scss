@@ -1,0 +1,122 @@
+@import '../scss/variables';
+
+.random {
+  margin-top: 55px;
+  width: 100%;
+  display: flex;
+  .character,
+  .try {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+  }
+  button {
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    padding: 11px;
+    display: block;
+    border: none;
+    width: 101px;
+    height: 38px;
+    background: #5c5c5c;
+    &:first-of-type {
+      background: $main-color;
+    }
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+    }
+    &.tryIt {
+      &::before,
+      &::after {
+        border-top-color: #232222;
+        border-bottom-color: #232222;
+      }
+    }
+    &::before {
+      width: 0;
+      left: 0;
+      top: 0;
+      height: 0;
+      border-top: 10px solid #fff;
+      border-right: 10px solid transparent;
+    }
+    &::after {
+      width: 0;
+      right: 0;
+      bottom: 0;
+      height: 0;
+      border-bottom: 10px solid #fff;
+      border-left: 10px solid transparent;
+    }
+  }
+  .character {
+    padding: 0;
+    .wrapper {
+      padding: 35px 73px 35px 35px;
+      display: flex;
+      background: #fff;
+      justify-content: space-between;
+      animation: showCharacter 0.5s ease-in-out;
+      &.loading {
+        padding: 35px 40px 35px 35px;
+      }
+    }
+    img {
+      width: 180px;
+      height: 180px;
+    }
+    .text {
+      display: flex;
+      flex-direction: column;
+      margin-left: 30px;
+      h2 {
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 26px;
+        color: #000000;
+      }
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #000000;
+        flex: 1;
+        margin-top: 13px;
+      }
+      div {
+        margin-top: 13px;
+        display: flex;
+        width: 232px;
+        justify-content: space-between;
+      }
+    }
+  }
+  .try {
+    width: 100%;
+    color: #fff;
+    background: #232222 url('./try.png') no-repeat;
+    background-position: bottom 30px right -40px;
+    background-size: 205px;
+    padding: 35px 35px 32px 40px;
+    h2 {
+      max-width: 373px;
+    }
+    h2:last-of-type {
+      margin-top: 41px;
+    }
+    button {
+      margin-top: 17px;
+    }
+  }
+}
+
+@keyframes showCharacter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

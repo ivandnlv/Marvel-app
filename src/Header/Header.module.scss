@@ -1,0 +1,40 @@
+@import '../scss/variables';
+
+.header {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  h1 {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+    span {
+      color: $main-color;
+    }
+  }
+  nav ul {
+    display: flex;
+    width: 201px;
+    justify-content: space-between;
+    list-style-type: none;
+    align-items: center;
+    div {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 28px;
+    }
+    li {
+      cursor: pointer;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+}
+
+.selected {
+  color: $main-color;
+}
