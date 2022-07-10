@@ -8,7 +8,7 @@ const ThemeSwitcher = () => {
   const [dark, setDark] = useState(false);
 
   useLayoutEffect(() => {
-    const localDark = localStorage.getItem('theme');
+    const localDark = JSON.parse(localStorage.getItem('theme'));
     localDark && setDark(localDark);
   }, []);
 

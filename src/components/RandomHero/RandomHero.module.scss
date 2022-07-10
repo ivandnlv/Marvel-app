@@ -8,54 +8,6 @@
     width: 550px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
   }
-  button,
-  a {
-    position: relative;
-    cursor: pointer;
-    color: var(--btns-text-color);
-    padding: 11px;
-    display: block;
-    border: none;
-    width: 101px;
-    height: 38px;
-    background: #5c5c5c;
-    transition: 0.2s transform ease-in-out;
-    &:hover {
-      transform: translateY(-5px);
-    }
-    &:first-of-type {
-      background: $main-color;
-    }
-    &::before,
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-    }
-    &.tryIt {
-      &::before,
-      &::after {
-        border-top-color: var(--content-bg-second);
-        border-bottom-color: var(--content-bg-second);
-      }
-    }
-    &::before {
-      width: 0;
-      left: 0;
-      top: 0;
-      height: 0;
-      border-top: 10px solid var(--content-bg-first);
-      border-right: 10px solid transparent;
-    }
-    &::after {
-      width: 0;
-      right: 0;
-      bottom: 0;
-      height: 0;
-      border-bottom: 10px solid var(--content-bg-first);
-      border-left: 10px solid transparent;
-    }
-  }
   .character {
     width: 550px;
     padding: 0;
@@ -68,10 +20,14 @@
       animation: showCharacter 0.5s ease-in-out;
       &.loading {
         padding: 35px 40px 35px 35px;
+        svg rect {
+          background-color: var(--skeleton-bg-color);
+        }
       }
     }
     img {
       width: 180px;
+      object-fit: fill;
       height: 180px;
     }
     .text {

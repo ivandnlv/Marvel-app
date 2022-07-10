@@ -12,9 +12,11 @@ body[data-theme='dark'] {
   --bg-color: #313131;
   --text-color: #fff;
   --content-bg-first: #3b3a3a;
+  --skeleton-bg-color: #6e6e6e;
 }
 
 body[data-theme='light'] {
+  --skeleton-bg-color: #f3f3f3;
   --bg-color: #fff;
   --content-bg-first: #fff;
   --text-color: #000;

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { marvelApi } from '../slices/marvelApi';
+import { marvelApi } from '../marvelApi';
 import randomSlice from '../slices/randomSlice';
 
 const store = configureStore({

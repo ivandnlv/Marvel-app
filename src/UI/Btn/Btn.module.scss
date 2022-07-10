@@ -1,0 +1,66 @@
+@import '../../scss/variables';
+
+.btn {
+  position: relative;
+  cursor: pointer;
+  color: var(--btns-text-color);
+  padding: 11px;
+  display: block;
+  border: none;
+  width: 101px;
+  height: 38px;
+  background: $main-color;
+  transition: 0.2s transform ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+  }
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+  &::before {
+    width: 0;
+    left: 0;
+    top: 0;
+    height: 0;
+    border-top: 10px solid var(--content-bg-first);
+    border-right: 10px solid transparent;
+  }
+  &::after {
+    width: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    border-bottom: 10px solid var(--content-bg-first);
+    border-left: 10px solid transparent;
+  }
+}
+
+.grey {
+  background: #5c5c5c;
+}
+
+.try {
+  text-align: center;
+  margin-top: 13px;
+  &::before,
+  &::after {
+    border-top-color: var(--content-bg-second);
+    border-bottom-color: var(--content-bg-second);
+  }
+}
+
+.load {
+  text-align: center;
+  width: 170px;
+  &:hover {
+    transform: translateX(-50%) translateY(-5px) !important;
+  }
+  &::before,
+  &::after {
+    border-top-color: var(--bg-color);
+    border-bottom-color: var(--bg-color);
+  }
+}

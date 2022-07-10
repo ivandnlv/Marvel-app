@@ -1,0 +1,15 @@
+.characters {
+  position: relative;
+  margin: 53px 0 150px 0;
+  display: grid;
+  max-width: 650px;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, 200px);
+  justify-content: center;
+  a {
+    position: absolute;
+    bottom: -83px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

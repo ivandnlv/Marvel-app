@@ -11,7 +11,6 @@ const RandomHeroSkeleton = () => {
         width={475}
         height={180}
         viewBox="0 0 475 180"
-        backgroundColor="#f3f3f3"
         foregroundColor="#ecebeb">
         <rect x="0" y="0" rx="0" ry="0" width="180" height="180" />
         <rect x="210" y="0" rx="0" ry="0" width="51" height="29" />

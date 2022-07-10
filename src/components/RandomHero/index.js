@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useGetRandomQuery } from '../../redux/slices/marvelApi';
+import { useGetRandomQuery } from '../../redux/marvelApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { setHero } from '../../redux/slices/randomSlice';
-import marvelApi from '../../services/marvelApi';
 import RandomHeroSkeleton from '../../UI/Skeletons/RandomHeroSkeleton';
 
 import styles from './RandomHero.module.scss';
+import Btn from '../../UI/Btn';
 
 const RandomHero = () => {
   const { data = [], isFetching, isError, refetch } = useGetRandomQuery();
@@ -71,7 +71,7 @@ const RandomHero = () => {
           <RandomHeroSkeleton />
         ) : (
           <div className={styles.wrapper}>
-            {thumbnail !== '' && <img src={thumbnail} alt={name} />}
+            <img src={thumbnail} alt={name} />
             <div className={styles.text}>
               {name !== '' && <h2>{name}</h2>}
               {description !== '' ? (
@@ -85,8 +85,12 @@ const RandomHero = () => {
               ) : null}
               {urls.length !== 0 && name !== 'Sorry, an error has occurred' && (
                 <div>
-                  <a href={urls[0].url}>HOMEPAGE</a>
-                  <a href={urls[1].url}>WIKI</a>
+                  <Btn color="main" url={urls[0].url}>
+                    HOMEPAGE
+                  </Btn>
+                  <Btn color="grey" url={urls[1].url}>
+                    WIKI
+                  </Btn>
                 </div>
               )}
             </div>
@@ -99,9 +103,9 @@ const RandomHero = () => {
           <br /> Do you want to get to know him better?
         </h2>
         <h2>Or choose another one</h2>
-        <button className={styles.tryIt} onClick={onTryClick}>
+        <Btn color="main" type="try" onClick={onTryClick}>
           TRY IT
-        </button>
+        </Btn>
       </div>
     </div>
   );

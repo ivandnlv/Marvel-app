@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { _apiKey } from '../../services/marvelApi';
+import { _apiKey } from '../services/_apiKey';
 
 const randomHeroId = (min = 1011400, max = 1011000) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
@@ -13,7 +13,10 @@ export const marvelApi = createApi({
     getRandom: builder.query({
       query: () => `characters/${randomHeroId()}?${_apiKey}`,
     }),
+    getCharactersList: builder.query({
+      query: (limit) => `characters?limit=${limit}?&${_apiKey}`,
+    }),
   }),
 });
 
-export const { useGetRandomQuery } = marvelApi;
+export const { useGetRandomQuery, useGetCharactersListQuery } = marvelApi;
