@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-import styles from '../RandomHero/RandomHero.module.scss';
+import styles from '../../components/RandomHero/RandomHero.module.scss';
 
 const RandomHeroSkeleton = () => {
   return (
