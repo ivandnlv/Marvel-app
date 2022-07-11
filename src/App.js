@@ -1,3 +1,4 @@
+import CharacterInfo from './components/CharacterInfo';
 import CharactersList from './components/CharactersList';
 import Header from './components/Header';
 import RandomHero from './components/RandomHero';
@@ -9,7 +10,10 @@ function App() {
       <ThemeSwitcher />
       <Header />
       <RandomHero />
-      <CharactersList />
+      <div className="Characters">
+        <CharactersList />
+        <CharacterInfo />
+      </div>
     </div>
   );
 }

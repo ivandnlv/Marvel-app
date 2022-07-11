@@ -16,7 +16,10 @@ export const marvelApi = createApi({
     getCharactersList: builder.query({
       query: (limit) => `characters?limit=${limit}?&${_apiKey}`,
     }),
+    getCharacterById: builder.query({
+      query: (id) => `characters/${id}?${_apiKey}`,
+    }),
   }),
 });
 
-export const { useGetRandomQuery, useGetCharactersListQuery } = marvelApi;
+export const { useGetRandomQuery, useGetCharactersListQuery, useGetCharacterByIdQuery } = marvelApi;

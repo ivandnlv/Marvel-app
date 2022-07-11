@@ -32,4 +32,9 @@ body[data-theme='light'] {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
+  .Characters {
+    display: grid;
+    grid-template-columns: 1fr 425px;
+    gap: 25px;
+  }
 }

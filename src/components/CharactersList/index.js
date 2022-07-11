@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useGetCharactersListQuery } from '../../redux/marvelApi';
+import { useDispatch } from 'react-redux';
+import { setId } from '../../redux/slices/characterSlice';
 import Btn from '../../UI/Btn';
 import CharactersSkeleton from '../../UI/Skeletons/CharactersSkeleton';
 import CharactersItem from '../CharactersItem';
 import styles from './CharactersList.module.scss';
 
 const CharactersList = () => {
+  const dispatch = useDispatch();
+
   const [charactersCount, setCharactersCount] = useState(9);
   const { data, isFetching, isError } = useGetCharactersListQuery(charactersCount);
   const [loading, setLoading] = useState(true);
@@ -27,6 +31,10 @@ const CharactersList = () => {
     setMoreLoading(true);
   };
 
+  const onCharacterClick = (id) => {
+    dispatch(setId(id));
+  };
+
   if (isError) return <h2>Error</h2>;
 
   return (
@@ -36,6 +44,7 @@ const CharactersList = () => {
         : !isError &&
           characters?.map((character) => (
             <CharactersItem
+              onClick={() => onCharacterClick(character.id)}
               key={character.id}
               name={character.name}
               image={character.thumbnail.path + '.' + character.thumbnail.extension}
