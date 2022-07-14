@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Btn.module.scss';
 
-const Btn = ({ url, color, children, onClick, type }) => {
+const Btn = ({ url, color, children, onClick, type, props }) => {
   let className =
     type === 'try'
       ? styles.btn + ' ' + styles.try
@@ -13,7 +13,7 @@ const Btn = ({ url, color, children, onClick, type }) => {
       : color === 'grey' && styles.btn + ' ' + styles.grey;
 
   return (
-    <a href={url} className={className} onClick={onClick}>
+    <a href={url} className={className} onClick={onClick} {...props}>
       {children}
     </a>
   );

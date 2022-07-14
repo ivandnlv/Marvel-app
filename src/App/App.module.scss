@@ -1,0 +1,17 @@
+.app {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.characters {
+  display: grid;
+  grid-template-columns: 1fr 425px;
+  gap: 25px;
+}
+
+.info {
+  height: fit-content;
+  position: sticky;
+  top: -40px;
+}

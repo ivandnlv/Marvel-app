@@ -6,23 +6,17 @@ const characterSlice = createSlice({
     id: null,
     thumbnail: null,
     name: null,
-    urls: null,
     description: null,
-    comics: null,
   },
   reducers: {
-    setId(state, action) {
-      state.id = action.payload;
-    },
     setCharacter(state, action) {
-      state.thumbnail = action.payload.path + '.' + action.payload.type;
+      state.id = action.payload.id;
+      state.thumbnail = action.payload.path + '.' + action.payload.extension;
       state.name = action.payload.name;
-      state.urls = action.payload.urls;
       state.description = action.payload.description;
-      state.comics = action.payload.comics;
     },
   },
 });
 
-export const { setCharacter, setId } = characterSlice.actions;
+export const { setCharacter } = characterSlice.actions;
 export default characterSlice.reducer;

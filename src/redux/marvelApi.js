@@ -9,17 +9,28 @@ export const marvelApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://gateway.marvel.com:443/v1/public/',
   }),
-  endpoints: (builder) => ({
-    getRandom: builder.query({
+  endpoints: (build) => ({
+    getRandom: build.query({
       query: () => `characters/${randomHeroId()}?${_apiKey}`,
     }),
-    getCharactersList: builder.query({
+    getCharactersList: build.query({
       query: (limit) => `characters?limit=${limit}?&${_apiKey}`,
     }),
-    getCharacterById: builder.query({
+    getCharacterById: build.query({
       query: (id) => `characters/${id}?${_apiKey}`,
+    }),
+    getAllCharacters: build.mutation({
+      query: (name) => ({
+        url: `characters?name=${name}&${_apiKey}`,
+        method: 'GET',
+      }),
     }),
   }),
 });
 
-export const { useGetRandomQuery, useGetCharactersListQuery, useGetCharacterByIdQuery } = marvelApi;
+export const {
+  useGetRandomQuery,
+  useGetCharactersListQuery,
+  useGetCharacterByIdQuery,
+  useGetAllCharactersMutation,
+} = marvelApi;
