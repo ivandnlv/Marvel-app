@@ -1,35 +1,15 @@
 import Btn from '../../UI/Btn';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCharacter } from '../../redux/slices/characterInfoSlice';
-import { useGetCharacterByIdQuery } from '../../redux/marvelApi';
-import { useEffect } from 'react';
 import CharacterInfoSkeleton from '../../UI/Skeletons/CharacterInfoSkeleton';
 
 import styles from './CharacterInfo.module.scss';
 
 const CharacterInfo = () => {
-  const dispatch = useDispatch();
-  const { id, thumbnail, name, urls, description, comics } = useSelector(
+  const { thumbnail, name, urls, description, comics, isFetching, isError } = useSelector(
     (state) => state.characterInfo,
   );
-  const { data, isFetching, isError } = useGetCharacterByIdQuery(id);
 
-  useEffect(() => {
-    if (data) {
-      dispatch(
-        setCharacter({
-          path: data.data.results[0]?.thumbnail.path,
-          type: data.data.results[0]?.thumbnail.extension,
-          name: data.data.results[0]?.name,
-          urls: data.data.results[0]?.urls,
-          description: data.data.results[0]?.description,
-          comics: data.data.results[0]?.comics.items,
-        }),
-      );
-    }
-  }, [data]);
-
-  if (id && isError) {
+  if (isError) {
     return (
       <div className={styles.info}>
         <h2>Error</h2>
@@ -39,7 +19,7 @@ const CharacterInfo = () => {
 
   return (
     <>
-      {!id || isFetching ? (
+      {!name || isFetching ? (
         <div className={styles.info}>
           <h2>Please select a character</h2>
           <CharacterInfoSkeleton />

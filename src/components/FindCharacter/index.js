@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { marvelApi } from '../../redux/marvelApi';
-import { setCharacter } from '../../redux/slices/characterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCharacterById, resetCharacter } from '../../redux/slices/characterSlice';
 import { Link } from 'react-router-dom';
 import Btn from '../../UI/Btn';
 
@@ -10,10 +9,8 @@ import styles from './FindCharacter.module.scss';
 const FindCharacter = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
 
-  const [getAllCharacters, { data, isSuccess }] = marvelApi.useGetAllCharactersMutation(value);
+  const { error, success, errorMessage } = useSelector((state) => state.character);
 
   const correctCharacterName = () => {
     const arr = value.split(' ');
@@ -24,32 +21,12 @@ const FindCharacter = () => {
   };
 
   const onSubmit = async () => {
-    if (value.length > 3) {
-      await getAllCharacters(value);
-      if (isSuccess) {
-        console.log(data);
-        setSuccess(true);
-        dispatch(
-          setCharacter({
-            name: data.data.results[0]?.name,
-            description: data.data.results[0]?.description,
-            path: data.data.results[0]?.thumbnail.path,
-            extension: data.data.results[0]?.thumbnail.extension,
-            id: data.data.results[0]?.id,
-          }),
-        );
-      }
-    } else {
-      setValue('');
-      setSuccess(false);
-      setError('This field is required');
-    }
+    dispatch(getCharacterById(correctCharacterName()));
   };
 
   const onInputChange = (val) => {
+    dispatch(resetCharacter());
     setValue(val);
-    setError('');
-    setSuccess(false);
   };
 
   return (
@@ -63,15 +40,21 @@ const FindCharacter = () => {
             onChange={(e) => onInputChange(e.target.value)}
             value={value}
           />
-          {error && <p className={styles.error}>{error}</p>}
-          {success && <p className={styles.agree}>There is! Visit {value} page?</p>}
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          {success && !error && (
+            <p className={styles.agree}>There is! Visit {correctCharacterName()} page?</p>
+          )}
         </label>
       </div>
       <div>
         <Btn color="main" onClick={onSubmit}>
           FIND
         </Btn>
-        {success && <Btn color="grey">To page</Btn>}
+        {success && value && (
+          <Link to="/character">
+            <div className={styles.topage}>TO PAGE</div>
+          </Link>
+        )}
       </div>
     </form>
   );

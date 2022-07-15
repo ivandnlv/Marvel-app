@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useGetCharactersListQuery } from '../../redux/marvelApi';
 import { useDispatch } from 'react-redux';
-import { setId } from '../../redux/slices/characterInfoSlice';
+import { getCharacterInfo, setId } from '../../redux/slices/characterInfoSlice';
 import spinner from '../../UI/spinner.svg';
 import Btn from '../../UI/Btn';
 import CharactersSkeleton from '../../UI/Skeletons/CharactersSkeleton';
@@ -33,7 +33,7 @@ const CharactersList = () => {
   };
 
   const onCharacterClick = (id) => {
-    dispatch(setId(id));
+    dispatch(getCharacterInfo(id));
   };
 
   return (

@@ -11,8 +11,9 @@
     font-size: 28px;
     line-height: 33px;
     color: var(--text-color);
-    span {
+    a {
       color: $main-color;
+      text-decoration: none;
     }
   }
   nav ul {
