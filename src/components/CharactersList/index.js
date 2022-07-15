@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useGetCharactersListQuery } from '../../redux/marvelApi';
 import { useDispatch } from 'react-redux';
-import { getCharacterInfo, setId } from '../../redux/slices/characterInfoSlice';
+import { getCharacterInfo } from '../../redux/slices/characterInfoSlice';
 import spinner from '../../UI/spinner.svg';
-import Btn from '../../UI/Btn';
+import LoadMoreBtn from '../../UI/LoadMoreBtn';
 import CharactersSkeleton from '../../UI/Skeletons/CharactersSkeleton';
 import CharactersItem from '../CharactersItem';
 import styles from './CharactersList.module.scss';
@@ -50,19 +50,13 @@ const CharactersList = () => {
             />
           ))}
       {!moreLoading ? (
-        <Btn color="main" type="load" onClick={onLoadMore}>
-          LOAD MORE
-        </Btn>
+        <LoadMoreBtn onClick={onLoadMore}>LOAD MORE</LoadMoreBtn>
       ) : moreLoading ? (
-        <Btn color="main" type="load">
+        <LoadMoreBtn disabled>
           <img width={50} height={50} src={spinner} alt="Loading..." />
-        </Btn>
+        </LoadMoreBtn>
       ) : (
-        isError && (
-          <Btn color="main" type="load">
-            Error
-          </Btn>
-        )
+        isError && <LoadMoreBtn disabled>Error</LoadMoreBtn>
       )}
     </div>
   );

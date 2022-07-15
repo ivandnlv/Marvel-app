@@ -1,0 +1,24 @@
+@import '../../scss/variables';
+
+.comicsItem {
+  width: 225px;
+  height: 413px;
+  img {
+    width: 225px;
+    height: 346px;
+    object-fit: fill;
+    border: none;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.25));
+  }
+  h2,
+  span {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--text-color);
+  }
+  span {
+    opacity: 0.8;
+  }
+}

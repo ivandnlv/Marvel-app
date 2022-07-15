@@ -1,59 +1,27 @@
-import { useState, useEffect } from 'react';
-import { useGetRandomQuery } from '../../redux/marvelApi';
+import { useState, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setHero } from '../../redux/slices/randomSlice';
+import { getRandomHero } from '../../redux/slices/randomSlice';
 import RandomHeroSkeleton from '../../UI/Skeletons/RandomHeroSkeleton';
-
-import styles from './RandomHero.module.scss';
 import Btn from '../../UI/Btn';
 
+import styles from './RandomHero.module.scss';
+
 const RandomHero = () => {
-  const { data = [], isFetching, isError, refetch } = useGetRandomQuery();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  const { name, thumbnail, description, urls } = useSelector((state) => state.random);
+  const { name, thumbnail, description, urls, isFetching } = useSelector((state) => state.random);
 
   useEffect(() => {
-    setLoading(true);
-  }, [isFetching === true]);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, [isFetching === false]);
-
-  if (isError)
-    dispatch(
-      setHero({
-        name: 'Sorry, an error has occurred',
-        thumbnail:
-          'https://cdni.iconscout.com/illustration/premium/thumb/internet-error-1886586-1598257.png',
-        description: '',
-        urls: [],
-      }),
-    );
-
-  const randomHero = () => {
-    if (data?.code === 200) {
-      const { name, description, thumbnail, urls } = data.data.results[0];
-      dispatch(
-        setHero({
-          name,
-          description,
-          thumbnail: thumbnail.path,
-          type: thumbnail.extension,
-          urls,
-        }),
-      );
+    if (isFetching) {
+      setLoading(true);
+    } else {
+      setTimeout(() => setLoading(false), 1000);
     }
-  };
-
-  useEffect(() => {
-    randomHero();
-  });
+  }, [isFetching]);
 
   const onTryClick = () => {
-    refetch();
+    dispatch(getRandomHero());
   };
 
   const shortDescription = () => {
@@ -111,4 +79,4 @@ const RandomHero = () => {
   );
 };
 
-export default RandomHero;
+export default memo(RandomHero);

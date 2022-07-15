@@ -28,9 +28,11 @@
       color: var(--text-color);
       line-height: 28px;
     }
-    li {
+    li a {
+      transition: 0.2s color ease-in-out;
       cursor: pointer;
       font-style: normal;
+      text-decoration: none;
       font-weight: 700;
       font-size: 24px;
       line-height: 28px;
@@ -39,6 +41,6 @@
   }
 }
 
-nav ul li.selected {
-  color: $main-color;
+.selected {
+  color: $main-color !important;
 }

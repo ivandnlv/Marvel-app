@@ -25,7 +25,7 @@ const CharacterInfo = () => {
           <CharacterInfoSkeleton />
         </div>
       ) : (
-        <div className={styles.info + ' ' + styles.show}>
+        <div className={styles.info}>
           <div className={styles.head}>
             <img src={thumbnail} alt={name} />
             <div>
@@ -42,9 +42,7 @@ const CharacterInfo = () => {
           <div className={styles.comics}>
             <h3>Comics:</h3>
             {comics?.map((comics, index) => (
-              <a key={index} href={comics.resourceURI}>
-                {comics.name}
-              </a>
+              <div key={index}>{comics.name}</div>
             ))}
           </div>
         </div>

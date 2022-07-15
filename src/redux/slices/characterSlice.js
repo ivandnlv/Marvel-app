@@ -10,6 +10,7 @@ export const getCharacterById = createAsyncThunk(
       ).then((data) => data.json());
       if (response) {
         if (response.data.results.length !== 0) {
+          console.log(response.data.results);
           dispatch(resetCharacter());
           dispatch(
             setCharacter({

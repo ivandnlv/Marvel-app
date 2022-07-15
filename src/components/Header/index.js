@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetCharacter } from '../../redux/slices/characterSlice';
 
@@ -22,9 +22,17 @@ const Header = () => {
       </h1>
       <nav>
         <ul>
-          <li className={styles.selected}>Characters</li>
+          <li>
+            <NavLink to="/" className={({ isActive }) => (isActive ? styles.selected : null)}>
+              Characters
+            </NavLink>
+          </li>
           <div>/</div>
-          <li>Comics</li>
+          <li>
+            <NavLink to="/comics" className={({ isActive }) => (isActive ? styles.selected : null)}>
+              Comics
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>

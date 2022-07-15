@@ -1,0 +1,19 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px 0 45px;
+  width: 100%;
+  height: 100px;
+  background: var(--content-bg-second);
+  div {
+    flex: 0.8;
+    h1 {
+      color: var(--btns-text-color);
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 28px;
+      width: 235px;
+    }
+  }
+}

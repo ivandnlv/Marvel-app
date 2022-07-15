@@ -4,11 +4,13 @@
   margin-top: 197px;
   display: grid;
   grid-template-columns: 293px 550px;
+  animation: show 1s ease-in-out;
   gap: 50px;
   img {
     width: 293px;
     height: 293px;
     object-fit: fill;
+    animation: show 2s ease-in-out;
   }
   h1,
   p {
@@ -24,5 +26,14 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
