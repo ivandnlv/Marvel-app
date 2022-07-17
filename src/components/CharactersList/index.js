@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useGetCharactersListQuery } from '../../redux/marvelApi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLimit } from '../../redux/slices/characterSlice';
 import { getCharacterInfo } from '../../redux/slices/characterInfoSlice';
 import spinner from '../../UI/spinner.svg';
 import LoadMoreBtn from '../../UI/LoadMoreBtn';
@@ -10,9 +11,9 @@ import styles from './CharactersList.module.scss';
 
 const CharactersList = () => {
   const dispatch = useDispatch();
+  const limit = useSelector((state) => state.character.limit);
 
-  const [charactersCount, setCharactersCount] = useState(9);
-  const { data, isFetching, isError } = useGetCharactersListQuery(charactersCount);
+  const { data, isFetching, isError } = useGetCharactersListQuery(limit);
   const [loading, setLoading] = useState(true);
   const [moreLoading, setMoreLoading] = useState(false);
 
@@ -27,8 +28,9 @@ const CharactersList = () => {
 
   const characters = data?.data.results;
 
-  const onLoadMore = () => {
-    setCharactersCount(charactersCount + 9);
+  const onLoadMore = (e) => {
+    e.preventDefault();
+    dispatch(setLimit(limit + 9));
     setMoreLoading(true);
   };
 
@@ -38,19 +40,18 @@ const CharactersList = () => {
 
   return (
     <div className={styles.characters}>
-      {loading && !data
-        ? [...Array(9)].map((item, index) => <CharactersSkeleton key={index} />)
-        : !isError &&
-          characters?.map((character) => (
-            <CharactersItem
-              onClick={() => onCharacterClick(character.id)}
-              key={character.id}
-              name={character.name}
-              image={character.thumbnail.path + '.' + character.thumbnail.extension}
-            />
-          ))}
+      {loading && !data && [...Array(9)].map((item, index) => <CharactersSkeleton key={index} />)}
+      {!isError &&
+        characters?.map((character) => (
+          <CharactersItem
+            onClick={() => onCharacterClick(character.id)}
+            key={character.id}
+            name={character.name}
+            image={character.thumbnail.path + '.' + character.thumbnail.extension}
+          />
+        ))}
       {!moreLoading ? (
-        <LoadMoreBtn onClick={onLoadMore}>LOAD MORE</LoadMoreBtn>
+        <LoadMoreBtn onClick={(e) => onLoadMore(e)}>LOAD MORE</LoadMoreBtn>
       ) : moreLoading ? (
         <LoadMoreBtn disabled>
           <img width={50} height={50} src={spinner} alt="Loading..." />

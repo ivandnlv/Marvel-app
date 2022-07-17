@@ -43,8 +43,12 @@ const characterSlice = createSlice({
     error: null,
     errorMessage: null,
     loading: null,
+    limit: 9,
   },
   reducers: {
+    setLimit(state, action) {
+      state.limit = action.payload;
+    },
     setSuccess(state) {
       state.success = true;
     },
@@ -85,5 +89,6 @@ const characterSlice = createSlice({
   },
 });
 
-export const { setCharacter, resetCharacter, setError, setSuccess } = characterSlice.actions;
+export const { setCharacter, resetCharacter, setError, setSuccess, setLimit } =
+  characterSlice.actions;
 export default characterSlice.reducer;

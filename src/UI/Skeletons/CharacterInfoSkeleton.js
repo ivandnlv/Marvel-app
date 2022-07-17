@@ -4,7 +4,7 @@ import styles from '../../components/CharacterInfo/CharacterInfo.module.scss';
 
 const CharacterInfoSkeleton = () => (
   <ContentLoader
-    speed={2}
+    speed={6}
     width={375}
     height={684}
     viewBox="0 0 375 684"

@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetCharacter } from '../../redux/slices/characterSlice';
+import ThemeSwitcher from '../ThemeSwitcher';
 
 import styles from './Header.module.scss';
 
@@ -35,6 +35,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+      <ThemeSwitcher />
     </div>
   );
 };
