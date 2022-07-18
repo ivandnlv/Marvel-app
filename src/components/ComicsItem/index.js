@@ -5,7 +5,7 @@ const ComicsItem = ({ title, price, thumbnail, onClick }) => {
     <div className={styles.comicsItem} onClick={onClick}>
       <img src={thumbnail} alt={title} />
       <h2>{title}</h2>
-      <span>{price}</span>
+      <span>{price === '0$' ? 'NOT AVAILABLE' : price}</span>
     </div>
   );
 };

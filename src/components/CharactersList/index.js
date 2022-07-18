@@ -18,13 +18,13 @@ const CharactersList = () => {
   const [moreLoading, setMoreLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-  }, [isFetching === true]);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-    setTimeout(() => setMoreLoading(false), 1000);
-  }, [isFetching === false]);
+    if (isFetching) {
+      setLoading(true);
+    } else {
+      setTimeout(() => setLoading(false), 1000);
+      setTimeout(() => setMoreLoading(false), 1000);
+    }
+  }, [isFetching]);
 
   const characters = data?.data.results;
 
