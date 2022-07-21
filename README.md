@@ -1,5 +1,7 @@
 # [Веб-приложение по работе с Marvel Api](https://ivandnlv.github.io/reactMarvelApi/)
 
+В данном проекте я познакомился с RTK Query, также закрепил на нем Redux Toolkit. 
+
 Для запуска необходимо прописать: npm install, далее npm start
 
 Стэк: 
